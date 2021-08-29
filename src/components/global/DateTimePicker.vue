@@ -97,7 +97,7 @@ const noSecondsDefaultMask = '####-##-## ##:##';
 const noSecondsDefaultDateMask = 'YYYY-MM-DD HH:mm';
 
 export default {
-  name: 'DatetimePicker',
+  name: 'DateTimePicker',
   model: {
     prop: 'value',
     event: 'input'
