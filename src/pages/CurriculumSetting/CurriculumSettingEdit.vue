@@ -40,13 +40,6 @@
         label="第幾天"
         dense
       />
-      <q-input
-        v-model.number="query.TargetWeight"
-        class="col-4"
-        filled
-        label="目標重量"
-        dense
-      />
     </div>
     <SubmitButton />
   </q-form>
@@ -64,8 +57,7 @@ const defaultQuery = {
   SportTypeId: null,
   Sets: 0,
   PeriodId: null,
-  Day: 0,
-  TargetWeight: 0
+  Day: 0
 };
 
 export default {

@@ -135,13 +135,6 @@
           </div>
           <div class="col-12">
             <q-input
-              v-model.number="postData.TargetWeight"
-              required
-              :label="'目標重量'"
-            />
-          </div>
-          <div class="col-12">
-            <q-input
               v-model.number="postData.Set"
               :label="'第幾組'"
             />
@@ -201,12 +194,6 @@ const tableColumns = [
     name: 'SportName',
     field: 'SportName',
     label: '運動名稱',
-    align: 'center'
-  },
-  {
-    name: 'TargetWeight',
-    field: 'TargetWeight',
-    label: '目標重量',
     align: 'center'
   },
   {
@@ -270,7 +257,6 @@ const defaultQuery = {
 const defaultPostData = {
   Date: today.clone().startOf('day').format(dateNoDashFormat),
   SportTypeId: 0,
-  TargetWeight: null,
   Set: null,
   Weight: null,
   Reps: null,

@@ -124,12 +124,6 @@ const tableColumns = [
     align: 'center'
   },
   {
-    name: 'TargetWeight',
-    field: 'TargetWeight',
-    label: '目標重量',
-    align: 'center'
-  },
-  {
     name: 'Operating',
     field: 'Operating',
     label: '操作',
