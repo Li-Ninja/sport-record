@@ -7,6 +7,7 @@
       :label="label"
       :size="size"
       :disable="disable"
+      @click="emitSubmit()"
     />
     <q-btn
       type="reset"
@@ -48,6 +49,11 @@ export default {
     size: {
       type: String,
       default: 'md'
+    }
+  },
+  methods: {
+    emitSubmit() {
+      return this.$emit('click-submit');
     }
   }
 };

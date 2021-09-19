@@ -6,10 +6,6 @@ const routes = [
     component: DefaultLayout,
     children: [
       {
-        path: '/CurriculumRecord',
-        component: () => import('pages/CurriculumRecord.vue')
-      },
-      {
         path: '/SportType',
         component: () => import('pages/SportType/SportType.vue'),
         children: [
@@ -42,6 +38,19 @@ const routes = [
             props: true,
             name: 'CurriculumSettingEdit',
             component: () => import('pages/CurriculumSetting/CurriculumSettingEdit.vue')
+          }
+        ]
+      },
+      {
+        path: '/CurriculumRecord',
+        name: 'CurriculumRecord',
+        component: () => import('pages/CurriculumRecord/CurriculumRecord.vue'),
+        redirect: 'CurriculumRecordTable',
+        children: [
+          {
+            path: '',
+            name: 'CurriculumRecordTable',
+            component: () => import('pages/CurriculumRecord/CurriculumRecordTable.vue')
           }
         ]
       },
