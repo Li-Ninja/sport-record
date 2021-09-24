@@ -8,7 +8,8 @@
   "scripts": {
     "lint": "eslint --ext .js,.vue ./",
     "test": "echo \"No test specified\" && exit 0",
-    "dev": "quasar dev -m ssr"
+    "dev": "quasar dev -m ssr",
+    "build": "quasar build -m ssr"
   },
   "dependencies": {
     "@quasar/extras": "^1.0.0",
@@ -21,6 +22,7 @@
   "devDependencies": {
     "@quasar/app": "^2.0.0",
     "babel-eslint": "^10.0.1",
+    "dotenv": "^10.0.0",
     "eslint": "^7.25.0",
     "eslint-config-airbnb-base": "^14.0.0",
     "eslint-loader": "^3.0.3",
