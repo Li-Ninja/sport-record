@@ -1,17 +1,26 @@
+#
+# build stage
+#
+
 # 使用 Node 的版本
-FROM node:14.15.5
+FROM node:14.15.5-alpine as build-stage
 
-# 複製
-COPY . /sport-record
-
-# Node 在容器內的位置
-WORKDIR /sport-record
-
-# 安裝必要的套件
+# make the 'app' folder the current working directory
+WORKDIR /app
+# install simple http server for serving static content
+COPY package.json .
+COPY yarn.lock .
 RUN yarn install
+# copy project files and folders to the current working directory (i.e. 'app' folder)
+COPY . .
+RUN yarn build
 
-# 開放對外的 port
-EXPOSE 8080
+#
+# production stage
+#
 
-# 執行專案
-CMD yarn dev
+FROM node:14.15.5-alpine as production-stage 
+WORKDIR /app
+COPY --from=build-stage /app/dist/ssr .
+RUN yarn install
+CMD yarn start

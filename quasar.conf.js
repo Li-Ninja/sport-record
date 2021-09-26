@@ -115,7 +115,11 @@ module.exports = function (/* ctx */) {
 
     // https://quasar.dev/quasar-cli/developing-ssr/configuring-ssr
     ssr: {
-      pwa: false
+      pwa: false,
+      extendPackageJson(pkg) {
+        /** @deprecated */
+        pkg.scripts.start = 'node index.js';
+      }
     },
 
     // https://quasar.dev/quasar-cli/developing-pwa/configuring-pwa
