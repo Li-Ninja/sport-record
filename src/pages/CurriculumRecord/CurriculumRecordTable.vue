@@ -7,14 +7,10 @@
         @reset="reset()"
       >
         <div class="col-12 col-md-6 col-lg-3">
-          <!-- TODO 換成 DateTimePicker -->
-          <!-- <DateTimePicker
+          <DateTimePicker
             v-model="query.Date"
             label="執行日期"
-          /> -->
-          <q-input
-            v-model="query.Date"
-            label="執行日期"
+            :datemask="dateFormat"
           />
         </div>
         <div class="col-12 col-md-6 col-lg-3">
@@ -48,14 +44,15 @@ import dayjs from 'dayjs';
 import weekday from 'dayjs/plugin/weekday';
 import notifyLib from 'src/lib/notify.lib';
 import zhTw from 'dayjs/locale/zh-tw';
+import { extend } from 'quasar';
 import debounce from 'debounce-promise';
 import {
   dateFormat
 } from 'src/const/common.const';
 import curriculumRecord from 'src/services/curriculumRecord.service';
 import sportRecordService from 'src/services/sportRecord.service';
+import DateTimePicker from 'src/components/global/DateTimePicker.vue';
 import SubmitButton from 'components/global/SubmitButton.vue';
-// import DateTimePicker from 'src/components/global/DateTimePicker.vue';
 import CurriculumRecordCard from 'src/components/CurriculumRecord/CurriculumRecordCard.vue';
 
 dayjs.extend(weekday);
@@ -71,13 +68,15 @@ export default {
   name: 'CurriculumRecordTable',
   components: {
     SubmitButton,
-    CurriculumRecordCard
+    CurriculumRecordCard,
+    DateTimePicker
   },
   data() {
     return {
       curriculumRecordList: [],
-      query: { ...defaultQuery },
-      addDate: ''
+      query: extend(true, {}, defaultQuery),
+      addDate: '',
+      dateFormat
     };
   },
   created() {
@@ -85,7 +84,7 @@ export default {
   },
   methods: {
     reset() {
-      this.query = { ...this.defaultQuery };
+      this.query = extend(true, {}, defaultQuery);
     },
     debounceFetchData() {
       debounce(() => {

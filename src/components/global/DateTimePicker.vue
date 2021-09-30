@@ -16,6 +16,7 @@
       :disable="disable"
       :rules="rules"
       :hint="hint"
+      readonly
       @clear="clear()"
       @input="onTypeInput"
     >
@@ -48,7 +49,10 @@
             </q-popup-proxy>
           </q-btn>
         </div>
-        <div class="inline">
+        <div
+          v-if="withTime"
+          class="inline"
+        >
           <q-btn
             flat
             dense
@@ -103,6 +107,10 @@ export default {
     event: 'input'
   },
   props: {
+    value: {
+      type: String,
+      default: ''
+    },
     mask: {
       type: String,
       default: ''
@@ -147,6 +155,10 @@ export default {
       type: String,
       default: ''
     },
+    withTime: {
+      type: Boolean,
+      default: false
+    },
     withSeconds: {
       type: Boolean,
       default: false
@@ -174,7 +186,7 @@ export default {
       localDateMask: this.datemask || (this.withSeconds
         ? defaultDateMask
         : noSecondsDefaultDateMask),
-      localValue: null
+      localValue: this.value
     };
   },
   computed: {
@@ -263,7 +275,7 @@ export default {
       this.emitInput();
     },
     emitInput() {
-      return this.$emit('input', [...this.localValue]);
+      return this.$emit('input', this.localValue);
     },
     isNumber(val) {
       return (typeof val === 'number');

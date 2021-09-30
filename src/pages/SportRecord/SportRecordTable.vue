@@ -108,18 +108,13 @@
           <div class="col-12">
             <!-- TODO: 全部要增加 rule required -->
 
-            <!-- TODO: v-model 的值還沒有搞好 -->
-            <!-- <DateTimePicker
+            <DateTimePicker
               v-model="postData.Date"
               stack-label
               dense
               filled
               :label="'日期'"
-            /> -->
-            <q-input
-              v-model.number="postData.Date"
-              required
-              :label="'日期'"
+              :datemask="dateFormat"
             />
           </div>
           <div class="col-12">
@@ -170,11 +165,10 @@ import weekday from 'dayjs/plugin/weekday';
 import debounce from 'debounce-promise';
 import { extend } from 'quasar';
 import {
-  dateFormat,
-  dateNoDashFormat
+  dateFormat
 } from 'src/const/common.const';
+import DateTimePicker from 'src/components/global/DateTimePicker.vue';
 import DataRangePicker from '../../components/global/DateRangePicker.vue';
-// import DateTimePicker from '../../components/global/DatetimePicker.vue';
 import SubmitButton from '../../components/global/SubmitButton.vue';
 import ContentDialog from '../../components/dialog/Content.dialog.vue';
 import notifyLib from '../../lib/notify.lib';
@@ -255,7 +249,7 @@ const defaultQuery = {
 };
 
 const defaultPostData = {
-  Date: today.clone().startOf('day').format(dateNoDashFormat),
+  Date: today.clone().startOf('day').format(dateFormat),
   SportTypeId: 0,
   Set: null,
   Weight: null,
@@ -267,7 +261,7 @@ export default {
   name: 'SportRecordTable',
   components: {
     DataRangePicker,
-    // DateTimePicker,
+    DateTimePicker,
     SubmitButton,
     ContentDialog
   },
@@ -282,7 +276,8 @@ export default {
         title: '新增',
         isOpenDialog: false,
         isEdit: false
-      }
+      },
+      dateFormat
     };
   },
   computed: {
