@@ -2,7 +2,7 @@
   <div>
     <q-input
       ref="inputRef"
-      v-model="localValue"
+      v-model.trim="localValue"
       class="daterange"
       :clearable="clearable"
       clear-icon="mdi-close"
